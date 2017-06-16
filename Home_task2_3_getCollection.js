@@ -7,20 +7,20 @@ db.getCollection('club_facilities').aggregate([
                                             foreignField: "club_id",
                                             as: "rulesAll"}},
                                  {$unwind:"$rulesAll"},
-                                 {$unwind:"$rulesAll.rules"},
+                                
                                  {$project:{  _id: 0,                                               
                                               club_facility_name_en: "$club_facilities.club_facility_name_en",
                                               club_facility_name_it: "$club_facility_name_it",
                                               club_facility_id: "$club_facilities.club_facility_id",
                                               club_facility_rule_id: "$club_facilities.club_facility_rule_id",                          
-                                              rule:"$rulesAll.rules"}},
-                                 {$redact: {
-                                            $cond: {
-                                                    if: {$and: [{$gt: [{$size: { $setIntersection: [["$club_facility_id"], club_facility_ids ]}}, 0]}, 
-                                                                {$eq: [ "$rule.rule_id", "$club_facility_rule_id" ]}]},
-                                                        then:  "$$KEEP",
-                                                    else: "$$PRUNE" 
-                                                    }
-                                            }
-                                  }])     
+                                              rule:{
+                                                $filter: {
+                                                    input: "$rulesAll.rules",
+                                                    as: "item",
+                                                    cond: { $eq: [ "$$item.rule_id", "$club_facilities.club_facility_rule_id" ] }}
+                                              }
+                                           }
+                                  },
+                                 {$match: {club_facility_id: {$in: club_facility_ids}}}
+                                 ])     
        
