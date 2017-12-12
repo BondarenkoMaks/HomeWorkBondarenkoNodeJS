@@ -1,0 +1,63 @@
+1)Заполнить данными колекцию 'club_facilities', пример документа будет в конце. ('club_facilities' array should has more than two elements) 
+2)Заполнить данными колекцию 'club_rules', -||- . ('rules' array should has more than two elements), запросы для 1-2 нужно приложить к решению
+3)Нужно написать запрос который вернет документ с такой структурой. В запросе я хочу передавать массив из значений 'club_facility_id'
+{
+    "club_facility_name_en" : "campo da calcetto",
+    "club_facility_name_it" : "",
+    "club_facility_id" : "c68c39f0-a5ae-11e6-87d4-0763f85bc820",
+    "club_facility_rule_id" : "66c80900-1f5b-11e7-aafb-87d8718c5af3",
+    "rule" : [ 
+        {
+            "rule_id" : "...",
+            "rule_name" : "...",
+            "rule_description" : "...",
+            "approval" : "...",
+            "medical_certificate" : "...",
+            "updated_at" : "..."
+        }
+    ]
+}
+
+Exampels!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+club_facilities:
+{
+    "_id" : ObjectId("..."),
+    "club_id" : "...",
+    "club_facilities" : [ 
+        {
+            "club_facility_id" : "",
+            "facility_id" : "",
+            "club_facility_name_en" : "",
+            "club_facility_name_it" : "",
+            "club_facility_priority_order" : "",
+            "club_facility_description_en" : "",
+            "club_facility_description_it" : "",
+            "club_facility_rule_id" : ""
+        }, 
+        {
+	}...
+    ],
+    "createdAt" : ISODate("..."),
+    "updatedAt" : ISODate("...")
+}
+
+club_rules:
+{
+    "_id" : ObjectId("58ede78452924c4f2f3bdd7a"),
+    "club_id" : "5821c172ffffc35e0d722209",
+    "rules" : [ 
+        {
+            "rule_id" : "",
+            "rule_name" : "",
+            "rule_description" : "",
+            "approval" : boolean,
+            "medical_certificate" : boolean,
+            "updated_at" : ISODate("...")
+        },
+	{
+	}...
+    ],
+    "createdAt" : ISODate("..."),
+    "updatedAt" : ISODate("...")
+}
